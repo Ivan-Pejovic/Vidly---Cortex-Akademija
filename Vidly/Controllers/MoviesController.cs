@@ -5,9 +5,18 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        public IActionResult Index(int pageIndex, string sortBy)
+        public IActionResult Index(int? pageIndex, string sortBy)
         {
-            return View();
+            if(!pageIndex.HasValue)
+            {
+                pageIndex = 1;
+            }
+            if(String.IsNullOrWhiteSpace(sortBy))
+            {
+                sortBy = "Name";
+            }
+
+            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
         }
 
         public IActionResult Random()
