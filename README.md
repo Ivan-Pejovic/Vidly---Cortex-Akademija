@@ -1,1 +1,1 @@
-# Vidly
+# Vidly - Cortex Akademija
