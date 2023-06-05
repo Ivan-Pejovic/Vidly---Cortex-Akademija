@@ -5,7 +5,7 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int pageIndex, string sortBy)
         {
             return View();
         }
@@ -18,6 +18,11 @@ namespace Vidly.Controllers
             movie.Name = "Shrek";
 
             return View(movie);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            return Content("id = " + id);
         }
     }
 }
