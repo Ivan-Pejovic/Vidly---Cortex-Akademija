@@ -17,10 +17,38 @@ namespace Vidly.Controllers
                 sortBy = "Name";
             }
 
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+            var movies = new List<Movie>();
+            movies.Add(new Movie(1, "Shrek"));
+            movies.Add(new Movie(2, "Wall-E"));
+
+            var viewModel = new MoviesIndexViewModel
+            {
+                MovieList = movies
+            };
+
+            return View(viewModel);
         }
 
-        public IActionResult Random()
+        public IActionResult Movie(int id)
+        {
+            var movies = new List<Movie>();
+            movies.Add(new Movie(1, "Shrek"));
+            movies.Add(new Movie(2, "Wall-E"));
+
+            var movie = new Movie();
+            foreach(var item in movies)
+            {
+                if(item.Id == id)
+                {
+                    movie = item;
+                    break;
+                }
+            }
+
+            return View(movie);
+        }
+
+        /*public IActionResult Random()
         {
             var movie = new Movie();
 
@@ -40,18 +68,18 @@ namespace Vidly.Controllers
             };
 
             return View(viewModel);
-        }
+        }*/
 
-        public IActionResult Edit(int id)
+        /*public IActionResult Edit(int id)
         {
             return Content("id = " + id);
-        }
+        }*/
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("movies/released/{{year:regex(\\d{4})}}/{{month:regex(\\d{2}):range(1, 12)}}")]
         public IActionResult ByReleaseDate(int year, int month)
         {
-            return Content(month + "/" + year);
-        }
+           return Content(month + "/" + year);
+        }*/
     }
 }
