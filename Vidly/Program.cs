@@ -21,10 +21,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+/*app.MapControllerRoute(
     name: "MoviesByReleaseDate",
     pattern: "movies/released/{year}/{month}",
-    new { controller = "Movies", action = "ByReleaseDate" });
+    new { controller = "Movies", action = "ByReleaseDate" },
+    new { year =  @"\d{4}", month = @"\d{2}" });*/
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

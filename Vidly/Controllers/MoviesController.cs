@@ -33,5 +33,12 @@ namespace Vidly.Controllers
         {
             return Content("id = " + id);
         }
+
+        [HttpGet]
+        [Route("movies/released/{{year:regex(\\d{4})}}/{{month:regex(\\d{2}):range(1, 12)}}")]
+        public IActionResult ByReleaseDate(int year, int month)
+        {
+            return Content(month + "/" + year);
+        }
     }
 }
